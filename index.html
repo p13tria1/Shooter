@@ -181,6 +181,8 @@ function launchenemy22() {
         enemy.body.velocity.y = game.rnd.integerInRange(100,300);
         enemy.body.drag.x =50;
         
+        enemy.trail.start(false, 800, 1);
+		
         //  Update function for each enemy ship to update rotation etc
         enemy.update = function(){
         enemy.angle =360 - game.math.radToDeg(Math.atan2(enemy.body.velocity.x, enemy.body.velocity.y));
