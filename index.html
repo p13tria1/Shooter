@@ -47,7 +47,7 @@ body {
 			game.load.image('ship', 'assets/ship.png');
 			game.load.image('bullet', 'assets/bullets/bullet.png');
 			game.load.image('enemy2', 'assets/enemies/enemy2.png');
-			game.load.spritesheet('explode','assets/explode.png',128,128);
+			game.load.spritesheet('explosion','assets/explode.png',128,128);
 
 		}
 
@@ -87,10 +87,10 @@ body {
 			enemies2.setAll('angle', 180);
 			enemies2.ForEach(function(enemy){
 				addEnemyEmitter(enemy);
-				enemy.events.Onkilled.add(function(){
+				enemy.events.onkilled.add(function(){
 					enemy.trail.kill();
-				)};
-			)};
+				});
+			});
 			
 			launchenemy22();
 	
@@ -208,14 +208,13 @@ function launchenemy22() {
         enemy.update = function(){
         enemy.angle =360;
 		
-	enemy.trail.x = enemy.x+20;
-	enemy.trail.y = enemy.y;
+	enemy.trail.x = enemy.x;
+	enemy.trail.y = enemy.y -10;
 		//kill enemies once they go off screen
-		if(enemy.x < game.width - 200 {
+		if(enemy.y > game.height + 200) {
 		   enemy.kill();
-	}
-        }
-    
+	   }
+         }
 	}
 	
 	//send
@@ -223,10 +222,10 @@ function launchenemy22() {
 }
 
 function addEnemyEmitterTrail(enemy) {
-	var enemyTrail = game.add.emitter(enemy.x + 20, player.y, 100);
-	 enemyTrail.height = 20;
+	var enemyTrail = game.add.emitter(enemy.x, player.y - 10, 100);
+	 enemyTrail.width = 20;
 	 enemyTrail.makeParticles('explosion', [1,2,3,4,5]);
-	 enemyTrail.setYSpeed(-20, 20);
+	 enemyTrail.setXSpeed(20, -20);
 	 enemyTrail.setRotation(50,-50);
 	 enemyTrail.setAlpha(0.4, 0, 800);
 	 enemyTrail.setScale(0.01, 0.1, 0.01, 0.1, 1000, Phaser.Easing.Quintic.Out);
