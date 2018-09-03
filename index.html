@@ -48,7 +48,7 @@ body {
 			game.load.image('ship', 'assets/ship.png');
 			game.load.image('bullet', 'assets/bullets/bullet.png');
 			game.load.image('enemy2', 'assets/enemies/enemy2.png');
-			game.load.image('explosion','assets/explode.png');
+			game.load.image('explosion','assets/explode.png',128,128);
 
 		}
 
@@ -86,8 +86,12 @@ body {
 			enemies2.setAll('scale.x',1.0);
 			enemies2.setAll('scale.y', 1.0);
 			enemies2.setAll('angle', 180);
-			enemies2.setAll('outOfBoundsKill', true);
-			enemies2.setAll('checkWorldBounds', true);
+			ememies2.forEach(function(enemy){
+        addEnemyEmitterTrail(enemy);
+        enemy.events.onKilled.add(function(){
+            enemy.trail.kill();
+        });
+    });
 			
 			launchenemy22();
 	
