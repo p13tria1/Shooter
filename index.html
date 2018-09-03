@@ -43,7 +43,7 @@ body {
 			game.load.image('ship', 'assets/ship.png');
 			game.load.image('bullet', 'assets/bullets/bullet.png');
 			game.load.image('enemy2', 'assets/enemies/enemy2.png');
-            game.load.image('explosion','assets/explode.png',128,128);
+                        game.load.spritesheet('explosion','assets/explode.png', 128, 128);
 		}
 		function create() {
 			
@@ -78,7 +78,7 @@ body {
 			enemies2.setAll('scale.y', 1.0);
       enemies2.setAll('angle', 180);
 			enemies2.ForEach(function(enemy){
-              addEnemymmiterTrail(enemy);
+              addEnemyEmitterTrail(enemy);
               enemy.events.onKilled.add(function(){
                 enemy.trail.kill();
               });
